@@ -87,7 +87,7 @@ async def attempt_login(page):
 
 async def main():
     async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=False)  # Run in non-headless mode for debugging
+        browser = await p.chromium.launch(headless=True)  # Set headless mode
         context = await browser.new_context()
         page = await context.new_page()
 
@@ -97,6 +97,7 @@ async def main():
         # Close the page and browser when done
         await page.close()
         await browser.close()
+
 
 if start_process:
     asyncio.run(main())
